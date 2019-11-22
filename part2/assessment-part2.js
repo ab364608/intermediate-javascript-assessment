@@ -43,9 +43,14 @@ function noWeakLink() {
     method: 'GET',
     url: '/api/users'
   })
-  // CODE HERE...
-
+  .then(response => {
+    firstUser = response.data[0];
+    thirdUser = response.data[2];
+    return response.data[0] && response.data[9];
+  })
 }
+
+// This question makes zero sense because you cant have two .then's within one function
 
 
 
@@ -73,8 +78,14 @@ function large() {
 
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
-// CODE HERE...
 
+//  function boundToElephant() {
+//   return large.call(elephant);
+//  }
+
+// boundToElephant()
+
+var boundToElephant = large.bind(elephant)
 
 
 // *************
@@ -87,7 +98,10 @@ function large() {
 // Use explicit binding to give capacity the context of crew
 // and return the bound function.
 
-// CODE HERE...
+function deathStar(crew, capacity) {
+  let binded = capacity.call(crew);
+  return binded
+}
 
 
 
@@ -102,7 +116,11 @@ function large() {
 // The closure function will take in a parameter: liabilities (Number)
 // The closure function will return the combined value of assets and liabilities.
 
-// CODE HERE...
+function accountingOffice(assets) {
+  return function(liabilities) {
+    return assets + liabilities
+  }
+}
 
 
 
@@ -127,7 +145,17 @@ function large() {
 //     remember: << array of items to be remembered >>
 // };
 
-// CODE HERE...
+function forgetter(name) {
+  let harryPotter = {
+    name: name,
+    remember: []
+  }
+  return function rememberall(item) {
+    console.log(item)
+   harryPotter.remember.push(item)
+    return harryPotter
+  }
+}
 
 
 
@@ -155,4 +183,28 @@ function large() {
 
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
-// CODE HERE...
+function frodo(startingHungerValue, startingDangerValue) {
+  let hunger = startingHungerValue;
+  let danger = startingDangerValue;
+    let lordOfRings = {
+      dinnerOverFire: function() {
+        let dinner = {
+          hunger: hunger - 25,
+          danger: danger + 40
+          }
+        if (dinner.hunger >= 25 && dinner.danger <= 60) {
+          return dinner
+        }
+      },
+      hidingInBush: function() {
+        let hiding = {
+          hunger: hunger + 35,
+          danger: danger - 20
+        }
+        if(hiding.hunger <= 65 && hiding.danger >= 20) {
+          return hiding
+        }
+      }
+    }
+  return lordOfRings
+}

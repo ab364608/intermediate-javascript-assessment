@@ -43,27 +43,27 @@ function daBears(){
 // Which function(s) access the "chair" variable and get "Too Big!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale1 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale1 = ["papaBear", "mamaBear"];
 
 // Which function(s) access the "feeling" variable and get "Hungry"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale2 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale2 = ["goldilocks"];
 
 // Which function(s) access the "porridge" variable and get "Too Cold!"
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale3 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale3 = ["mamaBear"];
 
 // Which function(s) access the "sleepy" variable and get undefined
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale4 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale4 = ["daBears", "papaBear", "mamaBear", "goldilocks"];
 
 // Which function(s) access the isFurry variable and get true
 // (Delete wrong answers, leave correct ones)
 
-var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
+var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear"];
 
 
 // *************
@@ -81,7 +81,20 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // the other called "mustang".  Using implicit context, invoke the drive method on
 // "charger" once, and invoke it twice on "mustang".
 
-// CODE HERE...
+function Vehicle() {
+  this.gasRemaining = 100;
+}
+
+Vehicle.prototype.drive = function() {
+  this.gasRemaining -= 25
+  return this.gasRemaining
+}
+
+let charger = new Vehicle();
+charger.drive();
+let mustang = new Vehicle();
+mustang.drive();
+mustang.drive();
 
 
 
@@ -105,10 +118,18 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 // and should neither modify them nor break when encountering them.
 
 
+String.prototype.grammarPolice = function() {
+  let arr1 = this.split(' ');
+  let arr2 = []
 
+  for (var i=0; i < arr1.length; i++) {
+    arr2.push(arr1[i].charAt(0).toUpperCase() + arr1[i].slice(1).toLowerCase());
+  }
+  return arr2.join(' ')
+}
 
-// CODE HERE...
-
+let test = "Testing this theory".grammarPolice();
+console.log(test)
 
 
 // *************
@@ -125,7 +146,16 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 // In all other cases, return "Different values"
 
-// CODE HERE...
+
+function valueType(param1, param2) {
+  if (param1 === param2) {
+    return "Exactly the same"
+  } else if (param1 == param2) {
+    return "Same value, different types"
+  } else {
+    return "Different values"
+  }
+}
 
 
 
@@ -140,4 +170,10 @@ var fairyTale5 = ["daBears", "papaBear", "mamaBear", "babyBear", "goldilocks"];
 
 var theAnswer = "Unknown";
 
-// CODE HERE...
+this.promiseCatcher = function(param) {
+  return param
+  .then(function(promise){
+    theAnswer = promise
+  })
+
+}
